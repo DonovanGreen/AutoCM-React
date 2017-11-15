@@ -9,18 +9,30 @@ export default class EventsAdapter {
     .then( resp => resp.json())
     .then(data => {
       data.map((data) => {
-        var parsedStartNumberArray = []
-          data.start.split(",").map((number) => {
-            parsedStartNumberArray.push(parseInt(number))
-          })
-        data.start = new Date(...parsedStartNumberArray)
-        var parsedEndNumberArray = []
-          data.end.split(",").map((number) => {
-            parsedStartNumberArray.push(parseInt(number))
-          })
-        data.end = new Date(...parsedEndNumberArray)
+        data.start = new Date(data.start)
+        data.end = new Date(data.end)
       })
       return data
+    })
+  }
+
+  static addEvent(event, start, end) {
+    debugger
+    return fetch(path,{
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({
+        title: event.title,
+        allDay: event.allDay,
+        start: start,
+        end: end
+      })
+    })
+    .then( resp => resp.json())
+    .then(data => {
+        data.start = new Date(data.start)
+        data.end = new Date(data.end)
+        return data
     })
   }
 

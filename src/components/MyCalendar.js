@@ -22,9 +22,19 @@ export default class MyCalendar extends React.Component {
     componentDidMount() {
       EventsAdapter.getEvents()
       .then(data => {
-        debugger
         this.setState({
           events: data
+        })
+      })
+    }
+
+    addEvent = (event, start, end) => {
+      EventsAdapter.addEvent(event,start, end)
+      .then((data) => {
+        this.setState({
+          slotInfoVisible: false,
+          slotData: null,
+          events: [...this.state.events, data]
         })
       })
     }
@@ -35,7 +45,7 @@ export default class MyCalendar extends React.Component {
     }
 
     renderSlotInfo = (slotInfo) => {
-      debugger
+      console.log(slotInfo.start.toLocaleString)
       this.setState({
         slotInfoVisible: true,
         slotData: slotInfo
@@ -45,7 +55,7 @@ export default class MyCalendar extends React.Component {
     render() {
       return (
         <div>
-        {this.state.slotInfoVisible ? <SlotInfo slotData={this.state.slotData} /> : null }
+        {this.state.slotInfoVisible ? <SlotInfo addEvent={this.addEvent} slotData={this.state.slotData} /> : null }
           <div className="calendar-outter-container">
             <div className="calendar-inner-container">
               <BigCalendar
@@ -53,11 +63,6 @@ export default class MyCalendar extends React.Component {
                 tep={60}
                 culture='en-GB'
                 onSelectEvent={this.editEvent}
-                // onSelectSlot={(slotInfo) => alert(
-                //     `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
-                //     `\nend: ${slotInfo.end.toLocaleString()}` +
-                //     `\naction: ${slotInfo.action}`
-                //   )}
                 onSelectSlot={this.renderSlotInfo}
                 events={this.state.events}
                 views={['month', 'week', 'day', 'agenda']}/>

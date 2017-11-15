@@ -19,9 +19,20 @@
 .slot-info-modal {
   position:absolute;
   z-index:9000;
-  background:pink;
+  background:rgba(0, 0, 0, .5);
   height:800px;
   width:100%;
+}
+
+.slot-info-inner-modal {
+  position:absolute;
+  background:#fff;
+  height:400px;
+  width:500px;
+  left:0;
+  right:0;
+  margin:auto;
+  top:10%;
 }
 
 .row {
