@@ -4,13 +4,12 @@ export default class AddEvent extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        title: "",
-        allDay: null
+      title: "",
+      allDay: null
     }
   }
 
   handleChange = (e) => {
-    debugger
     let property = e.target.name
     let value = e.target.value
     this.setState({
@@ -26,7 +25,6 @@ export default class AddEvent extends React.Component {
 
   handleToggle = (e) => {
     if(e.target.value == "on"){
-      debugger
       this.setState({
         allDay:true
       })
@@ -35,19 +33,25 @@ export default class AddEvent extends React.Component {
 
   render(){
     return(
-      <div>
-        <h4> Create </h4>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} name="title" placeholder="Title" required/>
-          <div class="switch">
-             <label>
-              All Day
-               <input onChange={this.handleToggle} type="checkbox"/>
-               <span class="lever"></span>
-             </label>
-           </div>
-          <button className="waves-effect waves-light btn"> Submit </button>
-        </form>
+      <div className="row">
+        <h4> Add Event </h4>
+        <div className="col l12">
+          <form onSubmit={this.handleSubmit}>
+          <div className="input-field col s12">
+              <input onChange={this.handleChange} name="title" placeholder="Title" required/>
+          </div>
+          <div className="align-left">
+              <div className="switch">
+                 <label>
+                  All Day
+                   <input onChange={this.handleToggle} type="checkbox"/>
+                   <span className="lever"></span>
+                 </label>
+               </div>
+            </div>
+            <button className="waves-effect waves-light btn"> Submit </button>
+          </form>
+        </div>
       </div>
     )
   }

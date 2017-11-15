@@ -59,6 +59,7 @@ export default class MyCalendar extends React.Component {
           <div className="calendar-outter-container">
             <div className="calendar-inner-container">
               <BigCalendar
+                popup
                 selectable
                 tep={60}
                 culture='en-GB'

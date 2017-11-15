@@ -17,7 +17,6 @@ export default class EventsAdapter {
   }
 
   static addEvent(event, start, end) {
-    debugger
     return fetch(path,{
       method: 'POST',
       headers: headers(),
@@ -25,7 +24,8 @@ export default class EventsAdapter {
         title: event.title,
         allDay: event.allDay,
         start: start,
-        end: end
+        end: end,
+        type: "social"
       })
     })
     .then( resp => resp.json())

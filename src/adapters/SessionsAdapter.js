@@ -16,7 +16,7 @@ export default class SessionsAdapter {
       headers: headers()
     })
       .then(res=> { return res.json()
-      })
+    })
   }
 }
 
