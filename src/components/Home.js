@@ -1,4 +1,5 @@
 import React from 'react'
+import MyCalendar from './MyCalendar'
 
 export default class Home extends React.Component {
   constructor(){
@@ -11,7 +12,9 @@ export default class Home extends React.Component {
   render() {
     return(
       <div>
-        <p> Home </p>
+        <button onClick={this.props.logOut}> Log Out </button>
+        <p> {this.props.currentUser.company} </p>
+        <MyCalendar />
       </div>
     )
   }

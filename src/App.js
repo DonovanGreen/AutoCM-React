@@ -22,6 +22,24 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    SessionsAdapter.currentUser()
+      .then( data => {
+        this.setState({
+          currentUser: data
+        })
+      })
+    }
+
+  componentWillReceiveProps(){
+    SessionsAdapter.currentUser()
+      .then( data => {
+        this.setState({
+          currentUser: data
+        })
+      })
+    }
+
   renderLogin = () => {
     return(
       <Login getUser={this.getUser} />
@@ -30,7 +48,7 @@ class App extends Component {
 
   renderHome = () => {
     return(
-      <Home currentUser={this.state.currentUser}/>
+      <Home currentUser={this.state.currentUser} logOut={this.logOut}/>
     )
   }
 
@@ -46,6 +64,14 @@ class App extends Component {
      this.context.router.history.push("/home")
    })
  }
+
+ logOut = () => {
+    localStorage.token = ""
+    this.setState({
+      currentUser:{}
+    })
+    this.context.router.history.push("/")
+  }
 
   render() {
     return (

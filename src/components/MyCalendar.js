@@ -8,37 +8,34 @@ BigCalendar.momentLocalizer(moment);
 export default class MyCalendar extends React.Component {
 
     constructor(props, context) {
-      super(props, context);
+      super(props, context)
+        this.state = {
+          events: []
+        }
     }
 
     editEvent = (e) => {
       alert("this have been selected ")
       console.log(e)
-      debugger
     }
 
-    editSlot = () => {
-      alert("selected this slot")
+    editSlot = (e) => {
+      alert("alert")
     }
 
     render() {
       return (
-        <div>
-          <BigCalendar
-            tep={60}
-            defaultDate={new Date(2015, 6, 1)}
-            culture='en-GB'
-            onSelectSlot={this.editSlot}
-            onSelectEvent={this.editEvent}
-            events={[
-                {
-                  'title': 'All Day Event very long title',
-                  'allDay': true,
-                  'start': new Date(2015, 3, 0),
-                  'end': new Date(2015, 3, 1)
-                }
-              ]}
-            views={['month', 'week', 'day', 'agenda']}/>
+        <div className="calendar-outter-container">
+          <div className="calendar-inner-container">
+            <BigCalendar
+              selectable
+              tep={60}
+              culture='en-GB'
+              onSelectEvent={this.editEvent}
+              onSelectSlot={this.editSlot}
+              events={this.state.events}
+              views={['month', 'week', 'day', 'agenda']}/>
+          </div>
         </div>
       );
     }
