@@ -15,3 +15,21 @@
   flex:1;
   min-height:0;
 }
+
+.slot-info-modal {
+  position:absolute;
+  z-index:9000;
+  background:pink;
+  height:800px;
+  width:100%;
+}
+
+.row {
+  text-align:center;
+}
+
+.login-column {
+  padding:10px!important;
+  margin:10% auto!important;
+  float:none!important;
+}

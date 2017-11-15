@@ -12,8 +12,8 @@ export default class Home extends React.Component {
   render() {
     return(
       <div>
-        <button onClick={this.props.logOut}> Log Out </button>
-        <p> {this.props.currentUser.company} </p>
+        <button onClick={this.props.logOut} className="waves-effect waves-light btn"> Log Out </button>
+        <p> Welcome {this.props.currentUser.company} </p>
         <MyCalendar />
       </div>
     )
